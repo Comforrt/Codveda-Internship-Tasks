@@ -54,7 +54,7 @@ try:
                 search_list = int(input("Input the number you would like to remove from MyTodoList : ")) - 1
                 if 0 <= search_list < len(todo_list): # validate index range before popping
                     delete = todo_list.pop(search_list) #deletes the preferred number of the user from todoList
-                    print(f'Task deleted : {delete['Task']}')
+                    print(f"Task deleted : {delete['Task']}")
                     store_json()
                 else:
                     print("Task number is not available!!")
