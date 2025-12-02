@@ -12,10 +12,7 @@ except Exception as e:
     print(f'Error: {e}')
     exit() # terminates the program if there's an issue loading the API key
 
-try:
-    TOWN = 'Techiman'
-except NameError as e:
-    print(f'Error : {e}')
+TOWN = 'Techiman'
 
 
 #function for converting kelvin to celsius and fahrenheit
