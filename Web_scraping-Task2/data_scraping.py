@@ -16,8 +16,8 @@ def store_csv(data):
             writer.writeheader()
             writer.writerows(data)
 
-        print("Saving...")
-        print(f"File has been successfully saved as: {filename}")
+        #print("Saving...")
+        #print(f"File has been successfully saved as: {filename}")
 
     except FileNotFoundError:
         print("Ooops!! File not found")
@@ -33,7 +33,11 @@ def find_books():
 
     while True:
         url = f'https://books.toscrape.com/catalogue/page-{html_page}.html'
-        response = requests.get(url)
+        try:
+            response = requests.get(url, timeout=5)
+        except requests.exceptions.RequestException:
+            print("Connection error! check your connection please!")
+            break
 
         if response.status_code != 200:  # if a page does not exist it stops the loop or even any other error
             break
@@ -73,13 +77,10 @@ def find_books():
             print(f"{e} an error occurred")
 
         # increment page NUMBER (correct place)
-        html_page += 1 #increment
+        html_page += 1 #increment by 1
 
     # saving to the csv file after scraping all the pages
     store_csv(results)
-    time_wait = 3
-    print(f'Waiting {time_wait} minutes...')
-    time.sleep(time_wait * 60)
-
 
 find_books()
+
